@@ -1,0 +1,31 @@
+version: "3.3"
+
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    container_name: gitlab
+    volumes:
+      - ./gitlab/config:/etc/gitlab
+      - ./gitlab/data:/var/opt/gitlab
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - postgresql
+    links:
+      - postgresql
+
+  runner:
+    image: gitlab/gitlab-runner:latest
+    container_name: runner
+    volumes:
+      - ./runner/config:/etc/gitlab-runner
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  postgresql:
+    image: postgres:latest
+    container_name: postgresql
+    environment:
+      - POSTGRES_PASSWORD=12345678
+    volumes:
+      - ./postgresql/data:/var/lib/postgresql/data

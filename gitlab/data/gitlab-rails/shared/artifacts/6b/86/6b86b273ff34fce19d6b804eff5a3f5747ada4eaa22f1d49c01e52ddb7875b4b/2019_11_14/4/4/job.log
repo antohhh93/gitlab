@@ -1,0 +1,53 @@
+[0KRunning with gitlab-runner 12.4.1 (05161b14)
+[0;m[0K  on Runner V8X7gZLj
+[0;msection_start:1573708454:prepare_executor[0K[0KUsing Docker executor with image atnartur/docker:latest ...
+[0;m[0KPulling docker image atnartur/docker:latest ...
+[0;m[0KUsing docker image sha256:02ff6bf101ed7ce55df52c39494b5c4f2769d3176c5d0b8aa6e063cb89e3a141 for atnartur/docker:latest ...
+[0;msection_end:1573708462:prepare_executor[0Ksection_start:1573708462:prepare_script[0KRunning on runner-V8X7gZLj-project-1-concurrent-0 via 353eeef6e341...
+section_end:1573708464:prepare_script[0Ksection_start:1573708464:get_sources[0K[32;1mFetching changes with git depth set to 50...[0;m
+Initialized empty Git repository in /builds/root/hello_world/.git/
+[32;1mCreated fresh repository.[0;m
+From http://172.17.0.1/root/hello_world
+ * [new ref]         refs/pipelines/2 -> refs/pipelines/2
+ * [new branch]      master           -> origin/master
+[32;1mChecking out e2db1ea7 as master...[0;m
+
+[32;1mSkipping Git submodules setup[0;m
+section_end:1573708467:get_sources[0Ksection_start:1573708467:restore_cache[0Ksection_end:1573708468:restore_cache[0Ksection_start:1573708468:download_artifacts[0Ksection_end:1573708470:download_artifacts[0Ksection_start:1573708470:build_script[0K[32;1m$ docker build -t hello_py_python:latest -f python/Dockerfile .[0;m
+Sending build context to Docker daemon   51.2kB
+Step 1/6 : FROM python:3.5.9-alpine
+ ---> 6c78ad66d452
+Step 2/6 : WORKDIR /app
+ ---> Using cache
+ ---> bef95d30e7eb
+Step 3/6 : COPY ./python /app
+ ---> Using cache
+ ---> 6cf0403af301
+Step 4/6 : RUN pip install --trusted-host pypi.python.org -r requirements.txt
+ ---> Using cache
+ ---> 81f735b993e8
+Step 5/6 : ENV NAME World
+ ---> Using cache
+ ---> 632412e00ae1
+Step 6/6 : CMD ["python", "main.py"]
+ ---> Using cache
+ ---> 841bc8e5c30e
+Successfully built 841bc8e5c30e
+Successfully tagged hello_py_python:latest
+[32;1m$ docker build -t hello_go_golang:latest -f golang/Dockerfile .[0;m
+Sending build context to Docker daemon   51.2kB
+Step 1/4 : FROM golang:alpine
+ ---> 3024b4e742b0
+Step 2/4 : WORKDIR /app
+ ---> Using cache
+ ---> 049a940c7204
+Step 3/4 : COPY ./golang /app
+ ---> Using cache
+ ---> dc09294f38b2
+Step 4/4 : CMD /bin/true
+ ---> Using cache
+ ---> 7c63c74b5a63
+Successfully built 7c63c74b5a63
+Successfully tagged hello_go_golang:latest
+section_end:1573708473:build_script[0Ksection_start:1573708473:after_script[0Ksection_end:1573708474:after_script[0Ksection_start:1573708474:archive_cache[0Ksection_end:1573708476:archive_cache[0Ksection_start:1573708476:upload_artifacts_on_success[0Ksection_end:1573708478:upload_artifacts_on_success[0K[32;1mJob succeeded
+[0;m

@@ -1,0 +1,18 @@
+[0KRunning with gitlab-runner 12.4.1 (05161b14)
+[0;m[0K  on Runner V8X7gZLj
+[0;msection_start:1573708503:prepare_executor[0K[0KUsing Docker executor with image atnartur/docker:latest ...
+[0;m[0KPulling docker image atnartur/docker:latest ...
+[0;m[0KUsing docker image sha256:02ff6bf101ed7ce55df52c39494b5c4f2769d3176c5d0b8aa6e063cb89e3a141 for atnartur/docker:latest ...
+[0;msection_end:1573708505:prepare_executor[0Ksection_start:1573708505:prepare_script[0KRunning on runner-V8X7gZLj-project-1-concurrent-0 via 353eeef6e341...
+section_end:1573708507:prepare_script[0Ksection_start:1573708507:get_sources[0K[32;1mFetching changes with git depth set to 50...[0;m
+Reinitialized existing Git repository in /builds/root/hello_world/.git/
+[32;1mChecking out e2db1ea7 as master...[0;m
+
+[32;1mSkipping Git submodules setup[0;m
+section_end:1573708509:get_sources[0Ksection_start:1573708509:restore_cache[0Ksection_end:1573708511:restore_cache[0Ksection_start:1573708511:download_artifacts[0Ksection_end:1573708512:download_artifacts[0Ksection_start:1573708512:build_script[0K[32;1m$ docker-compose -f docker-compose.py.yml -p hello_py stop[0;m
+[32;1m$ docker-compose -f docker-compose.py.yml -p hello_py rm -f || echo[0;m
+No stopped containers
+[32;1m$ docker-compose -f docker-compose.py.yml -p hello_py up -d[0;m
+Creating python ... 
+[1A[2KCreating python ... [32mdone[0m[1Bsection_end:1573708517:build_script[0Ksection_start:1573708517:after_script[0Ksection_end:1573708518:after_script[0Ksection_start:1573708518:archive_cache[0Ksection_end:1573708520:archive_cache[0Ksection_start:1573708520:upload_artifacts_on_success[0Ksection_end:1573708522:upload_artifacts_on_success[0K[32;1mJob succeeded
+[0;m

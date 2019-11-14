@@ -1,0 +1,122 @@
+[0KRunning with gitlab-runner 12.4.1 (05161b14)
+[0;m[0K  on Runner V8X7gZLj
+[0;msection_start:1573549928:prepare_executor[0K[0KUsing Docker executor with image atnartur/docker:latest ...
+[0;m[0KPulling docker image atnartur/docker:latest ...
+[0;m[0KUsing docker image sha256:02ff6bf101ed7ce55df52c39494b5c4f2769d3176c5d0b8aa6e063cb89e3a141 for atnartur/docker:latest ...
+[0;msection_end:1573550233:prepare_executor[0Ksection_start:1573550233:prepare_script[0KRunning on runner-V8X7gZLj-project-1-concurrent-0 via ef8b8a37de40...
+section_end:1573550234:prepare_script[0Ksection_start:1573550234:get_sources[0K[32;1mFetching changes with git depth set to 50...[0;m
+Initialized empty Git repository in /builds/root/hello_world/.git/
+[32;1mCreated fresh repository.[0;m
+From http://172.17.0.1/root/hello_world
+ * [new ref]         refs/pipelines/1 -> refs/pipelines/1
+ * [new branch]      master           -> origin/master
+[32;1mChecking out e2db1ea7 as master...[0;m
+
+[32;1mSkipping Git submodules setup[0;m
+section_end:1573550237:get_sources[0Ksection_start:1573550237:restore_cache[0Ksection_end:1573550239:restore_cache[0Ksection_start:1573550239:download_artifacts[0Ksection_end:1573550240:download_artifacts[0Ksection_start:1573550240:build_script[0K[32;1m$ docker build -t hello_py_python:latest -f python/Dockerfile .[0;m
+Sending build context to Docker daemon   51.2kB
+Step 1/6 : FROM python:3.5.9-alpine
+3.5.9-alpine: Pulling from library/python
+89d9c30c1d48: Pulling fs layer
+910c49c00810: Pulling fs layer
+28cfa853a357: Pulling fs layer
+049cc5351e02: Pulling fs layer
+fd62e2f2c903: Pulling fs layer
+049cc5351e02: Waiting
+fd62e2f2c903: Waiting
+910c49c00810: Verifying Checksum
+910c49c00810: Download complete
+049cc5351e02: Verifying Checksum
+049cc5351e02: Download complete
+89d9c30c1d48: Verifying Checksum
+89d9c30c1d48: Download complete
+89d9c30c1d48: Pull complete
+910c49c00810: Pull complete
+fd62e2f2c903: Verifying Checksum
+fd62e2f2c903: Download complete
+28cfa853a357: Verifying Checksum
+28cfa853a357: Download complete
+28cfa853a357: Pull complete
+049cc5351e02: Pull complete
+fd62e2f2c903: Pull complete
+Digest: sha256:3f758c857adb74dee5a31a701b43916b4e8ff8b120bddc40083ceb121c90ec19
+Status: Downloaded newer image for python:3.5.9-alpine
+ ---> 6c78ad66d452
+Step 2/6 : WORKDIR /app
+ ---> Running in 3b983c32bee1
+Removing intermediate container 3b983c32bee1
+ ---> bef95d30e7eb
+Step 3/6 : COPY ./python /app
+ ---> 6cf0403af301
+Step 4/6 : RUN pip install --trusted-host pypi.python.org -r requirements.txt
+ ---> Running in 61fef4ddfe0a
+Collecting Flask
+  Downloading https://files.pythonhosted.org/packages/9b/93/628509b8d5dc749656a9641f4caf13540e2cdec85276964ff8f43bbb1d3b/Flask-1.1.1-py2.py3-none-any.whl (94kB)
+Collecting click>=5.1
+  Downloading https://files.pythonhosted.org/packages/fa/37/45185cb5abbc30d7257104c434fe0b07e5a195a6847506c074527aa599ec/Click-7.0-py2.py3-none-any.whl (81kB)
+Collecting Jinja2>=2.10.1
+  Downloading https://files.pythonhosted.org/packages/65/e0/eb35e762802015cab1ccee04e8a277b03f1d8e53da3ec3106882ec42558b/Jinja2-2.10.3-py2.py3-none-any.whl (125kB)
+Collecting Werkzeug>=0.15
+  Downloading https://files.pythonhosted.org/packages/ce/42/3aeda98f96e85fd26180534d36570e4d18108d62ae36f87694b476b83d6f/Werkzeug-0.16.0-py2.py3-none-any.whl (327kB)
+Collecting itsdangerous>=0.24
+  Downloading https://files.pythonhosted.org/packages/76/ae/44b03b253d6fade317f32c24d100b3b35c2239807046a4c953c7b89fa49e/itsdangerous-1.1.0-py2.py3-none-any.whl
+Collecting MarkupSafe>=0.23
+  Downloading https://files.pythonhosted.org/packages/b9/2e/64db92e53b86efccfaea71321f597fa2e1b2bd3853d8ce658568f7a13094/MarkupSafe-1.1.1.tar.gz
+Building wheels for collected packages: MarkupSafe
+  Building wheel for MarkupSafe (setup.py): started
+  Building wheel for MarkupSafe (setup.py): finished with status 'done'
+  Created wheel for MarkupSafe: filename=MarkupSafe-1.1.1-cp35-none-any.whl size=12630 sha256=17923b71e9a0fa0480ecdde0e34bea378d20227bf2d9d92471951b53dbdc95b5
+  Stored in directory: /root/.cache/pip/wheels/f2/aa/04/0edf07a1b8a5f5f1aed7580fffb69ce8972edc16a505916a77
+Successfully built MarkupSafe
+Installing collected packages: click, MarkupSafe, Jinja2, Werkzeug, itsdangerous, Flask
+Successfully installed Flask-1.1.1 Jinja2-2.10.3 MarkupSafe-1.1.1 Werkzeug-0.16.0 click-7.0 itsdangerous-1.1.0
+Removing intermediate container 61fef4ddfe0a
+ ---> 81f735b993e8
+Step 5/6 : ENV NAME World
+ ---> Running in 5983f7ab2790
+Removing intermediate container 5983f7ab2790
+ ---> 632412e00ae1
+Step 6/6 : CMD ["python", "main.py"]
+ ---> Running in d12a892e3971
+Removing intermediate container d12a892e3971
+ ---> 841bc8e5c30e
+Successfully built 841bc8e5c30e
+Successfully tagged hello_py_python:latest
+[32;1m$ docker build -t hello_go_golang:latest -f golang/Dockerfile .[0;m
+Sending build context to Docker daemon   51.2kB
+Step 1/4 : FROM golang:alpine
+alpine: Pulling from library/golang
+89d9c30c1d48: Already exists
+8ef94372a977: Pulling fs layer
+1ec62c064901: Pulling fs layer
+a47b1e89d194: Pulling fs layer
+bf1a3d234800: Pulling fs layer
+bf1a3d234800: Waiting
+1ec62c064901: Verifying Checksum
+1ec62c064901: Download complete
+8ef94372a977: Download complete
+8ef94372a977: Pull complete
+1ec62c064901: Pull complete
+bf1a3d234800: Verifying Checksum
+bf1a3d234800: Download complete
+a47b1e89d194: Verifying Checksum
+a47b1e89d194: Download complete
+a47b1e89d194: Pull complete
+bf1a3d234800: Pull complete
+Digest: sha256:9d2a7c5b6447f525da0a4f18efd2cb05bf7d70228f75d713b7a67345f30157ac
+Status: Downloaded newer image for golang:alpine
+ ---> 3024b4e742b0
+Step 2/4 : WORKDIR /app
+ ---> Running in 1fc2497c8c3d
+Removing intermediate container 1fc2497c8c3d
+ ---> 049a940c7204
+Step 3/4 : COPY ./golang /app
+ ---> dc09294f38b2
+Step 4/4 : CMD /bin/true
+ ---> Running in 9b041d01abc0
+Removing intermediate container 9b041d01abc0
+ ---> 7c63c74b5a63
+Successfully built 7c63c74b5a63
+Successfully tagged hello_go_golang:latest
+section_end:1573550442:build_script[0Ksection_start:1573550442:after_script[0Ksection_end:1573550444:after_script[0Ksection_start:1573550444:archive_cache[0Ksection_end:1573550446:archive_cache[0Ksection_start:1573550446:upload_artifacts_on_success[0Ksection_end:1573550447:upload_artifacts_on_success[0K[32;1mJob succeeded
+[0;m
